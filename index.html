@@ -1810,17 +1810,10 @@
       </div>`;
 
     try {
-      const res = await fetch('https://formspree.io/f/xgonazyr', {
+      const res = await fetch('/api/cadastro', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          nome,
-          email,
-          perfil,
-          cnpj: cnpj || 'Não informado',
-          _subject: `[Novo cadastro: ${perfil}] ${nome} — FiscoMEI`,
-          _replyto: email
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, perfil, cnpj })
       });
 
       if (res.ok) {
