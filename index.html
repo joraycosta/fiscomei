@@ -1810,31 +1810,16 @@
       </div>`;
 
     try {
-      const res = await fetch('https://api.resend.com/emails', {
+      const res = await fetch('https://formspree.io/f/xgonazyr', {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer re_LHZzW5LN_F5FsY5gwPXjE3FPqpoCQ1ZXV',
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          from: 'FiscoMEI <onboarding@resend.dev>',
-          to: ['fiscomei.contato@gmail.com'],
-          reply_to: email,
-          subject: `[Novo cadastro: ${perfil}] ${subject}`,
-          html: `
-            <div style="font-family:Arial,sans-serif;background:#f0ede6;padding:20px;border-radius:8px;margin-bottom:24px">
-              <p style="margin:0;font-size:0.85rem;color:#555"><strong>📋 Novo cadastro no FiscoMEI</strong></p>
-              <p style="margin:6px 0 0;font-size:0.82rem;color:#555">Nome: <strong>${nome}</strong></p>
-              <p style="margin:4px 0 0;font-size:0.82rem;color:#555">E-mail: <strong>${email}</strong></p>
-              <p style="margin:4px 0 0;font-size:0.82rem;color:#555">Perfil: <strong>${perfil}</strong></p>
-              ${cnpj ? `<p style="margin:4px 0 0;font-size:0.82rem;color:#555">CNPJ: <strong>${cnpj}</strong></p>` : ''}
-            </div>
-            <hr style="border:none;border-top:1px solid #ddd;margin-bottom:24px"/>
-            <p style="font-family:Arial,sans-serif;font-size:0.8rem;color:#999;margin-bottom:16px">
-              👇 E-mail que seria enviado ao usuário (quando domínio verificado):
-            </p>
-            ${htmlBody}
-          `
+          nome,
+          email,
+          perfil,
+          cnpj: cnpj || 'Não informado',
+          _subject: `[Novo cadastro: ${perfil}] ${nome} — FiscoMEI`,
+          _replyto: email
         })
       });
 
