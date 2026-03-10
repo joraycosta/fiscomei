@@ -1,0 +1,18 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ]
+}
+```
+
+5. **"Commit changes"**
+
+---
+
+No final seu repositório vai ficar assim:
+```
+fiscomei/
+├── index.html
+├── vercel.json      ← novo
+└── api/
+    └── cadastro.js  ← atualizado
