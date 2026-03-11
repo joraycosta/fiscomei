@@ -31,11 +31,11 @@ module.exports = async function handler(req, res) {
           <p style="margin:0 0 10px">📋 <strong>Painel multi-cliente</strong> — veja o status de todos seus clientes MEI em uma tela, com alertas centralizados.</p>
           <p style="margin:0 0 10px">🏷️ <strong>Co-branding</strong> — o painel aparece com o nome do seu escritório para seus clientes.</p>
           <p style="margin:0">💰 <strong>Comissão recorrente</strong> — 20% de cada cliente MEI que converter. Sem limite de indicações.</p>
-        </div>
-        <p style="color:#3a4150;line-height:1.7;margin:0 0 24px">Nos próximos dias você receberá o link do painel e o kit de comunicação pronto para repassar aos seus clientes.</p>
+        </div> <p style="color:#3a4150;line-height:1.7;margin:0 0 24px">Nos próximos dias você receberá o link do painel e o kit de comunicação pronto para repassar aos seus clientes.</p>
         <p style="color:#7a8394;font-size:0.82rem;margin:0">Qualquer dúvida, responda este e-mail. Estarei pessoalmente disponível.<br><br>Um abraço,<br><strong>Equipe FiscoMEI</strong></p>
       </div>
-    </div>` : `<div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#111318">
+    </div>` : `
+    <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#111318">
       <div style="background:#1E3A5F;padding:32px;border-radius:12px 12px 0 0;text-align:center">
         <h1 style="color:#fff;font-size:1.6rem;margin:0;letter-spacing:-0.03em">FiscoMEI</h1>
         <p style="color:rgba(255,255,255,0.6);margin:8px 0 0;font-size:0.85rem">Sua vaga está garantida 🎉</p>
@@ -58,8 +58,7 @@ module.exports = async function handler(req, res) {
       </div>
     </div>`;
 
-  try {
-    // 1. E-mail de boas-vindas para o usuário
+  try {// 1. E-mail de boas-vindas para o usuário
     const resUsuario = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -67,7 +66,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'FiscoMEI <onboarding@resend.dev>',
+        from: 'FiscoMEI <contato@fiscomei.com.br>',
         to: [email],
         subject,
         html: htmlUsuario
@@ -82,7 +81,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'FiscoMEI Sistema <onboarding@resend.dev>',
+        from: 'FiscoMEI Sistema <contato@fiscomei.com.br>',
         to: ['fiscomei.contato@gmail.com'],
         subject: `📋 Novo cadastro: ${nome} (${perfil})`,
         html: `
